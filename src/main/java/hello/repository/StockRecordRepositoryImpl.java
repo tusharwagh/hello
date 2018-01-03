@@ -1,6 +1,5 @@
 package hello.repository;
 
-import com.lms.common.annotation.Loggable;
 import hello.domain.StockRecordRepository;
 import hello.entity.StockRecordEntity;
 import hello.model.Book;

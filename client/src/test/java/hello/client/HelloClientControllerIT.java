@@ -1,4 +1,4 @@
-package hello;
+package hello.client;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class HelloControllerIT {
+public class HelloClientControllerIT {
 
     @LocalServerPort
     private int port;

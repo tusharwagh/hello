@@ -16,6 +16,9 @@ import org.springframework.context.annotation.Import;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 @Import(CommonSwaggerConfiguration.class)
@@ -38,6 +41,18 @@ public class Application {
 
         };
     }
+
+/*
+@Bean
+private Stream<String> validatePackageNames(ApplicationContext ctx) {
+    List packages = Arrays.stream(ctx.getEnvironment().getProperty("aspectPackage").split(",")).collect(Collectors.toList());
+    Arrays.stream(Package.getPackages()).collect(Collectors.toList()).forEach(aPackage -> {
+        packages.forEach(o -> {
+            () -> aPackage.getName().startsWith(o.toString())
+        });
+    });
+}
+*/
 
 /*    @Bean
     public StockRecordRepository getStockRecordRepository() {

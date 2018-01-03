@@ -13,11 +13,12 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class ApplicationAspect {
 
-    @Around("execution(* hello.domain.*.*(..)) && @annotation(com.lms.common.annotation.Loggable)")
+    @Around("execution(* hello.domain.*.*(..)) && @annotation(com.lms.common.annotation.TrackTime)")
     public Object beforeMethodCall(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("aspect work "+joinPoint.getSignature().getName());
+        Logger LOGGER = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType().getName());
+        LOGGER.info("aspect work "+joinPoint.getSignature().getName());
         Object result = joinPoint.proceed();
-        System.out.println("aspect work done "+joinPoint.getSignature().getName());
+        LOGGER.info("aspect work done "+joinPoint.getSignature().getName());
         return result;
     }
 

@@ -1,6 +1,7 @@
 package hello;
 
 import com.google.common.collect.ImmutableList;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import hello.domain.StockRecordService;
 import hello.model.StockRecord;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package hello.domain;
 
-import com.lms.common.annotation.Loggable;
+import com.lms.common.annotation.TrackTime;
 import hello.model.Book;
 import hello.model.StockRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,12 @@ public class StockRecordService {
         this.repository = repository;
     }
 
-    @Loggable
+    @TrackTime
     public Stream<StockRecord> retrieveAllStockInformation() {
         return repository.retrieveAllStockInformation();
     }
 
+    @TrackTime
     public StockRecord retrieveByAccessionNo(String accessionNo) {
         return repository.retrieveByAccessionNo(accessionNo);
     }
