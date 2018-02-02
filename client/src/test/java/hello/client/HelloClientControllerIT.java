@@ -35,15 +35,8 @@ public class HelloClientControllerIT {
 
     @Test
     public void getHello() throws Exception {
-        String url = base.toString().concat("/greetings");
+        String url = base.toString().concat("/to-read");
         ResponseEntity<String> response = template.getForEntity(url.toString(),String.class);
-        Assert.assertThat(response.getBody(), Matchers.equalTo("Hello Urvi"));
-    }
-
-    @Test
-    public void getStockInformation() throws Exception {
-        String url = base.toString().concat("/stock");
-        ResponseEntity<List> response = template.getForEntity(url.toString(),List.class);
-        Assert.assertThat(response.getStatusCode(), Matchers.equalTo(HttpStatus.OK));
+        Assert.assertThat(response.getBody(), Matchers.anyOf(Matchers.equalTo("Hello Urvi"),Matchers.equalTo("Hello Mother")));
     }
 }

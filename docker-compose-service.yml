@@ -1,0 +1,11 @@
+helloservice:
+  build:  .
+  restart:  unless-stopped
+  ports:
+    - "9000:9000"
+
+clientservice:
+  build:  ./client
+  restart:  unless-stopped
+  ports:
+    - "9100:9100"

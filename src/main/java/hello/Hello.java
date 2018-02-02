@@ -20,29 +20,29 @@ public class Hello {
     @Autowired
     StockRecordService stockRecordService;
 
-    @GetMapping("greetings")
-    public String index() {
-        return "Hello Urvi";
+    @GetMapping("greetings/{name}")
+    public String index(@PathVariable String name) {
+        return "Hello "+name +". Welcome to Advanced Technologies DevOps Stall";
     }
 
     @GetMapping("stock")
     @Transactional(readOnly = true)
-    public List<StockRecord> retrieveAllStockInformation() {
+    private List<StockRecord> retrieveAllStockInformation() {
         return stockRecordService.retrieveAllStockInformation().collect(Collectors.toList());
     }
 
     @PostMapping("stock/register")
-    public StockRecord register(@RequestBody StockRecordInfo stockRecordInfo) {
+    private StockRecord register(@RequestBody StockRecordInfo stockRecordInfo) {
         return stockRecordService.register(stockRecordInfo.getAccessionNo(),stockRecordInfo.getIsbn(),stockRecordInfo.getTitle());
     }
 
     @DeleteMapping("stock/deregister/{accessionNo}")
-    public boolean deRegisterStockWith(@PathVariable String accessionNo) {
+    private boolean deRegisterStockWith(@PathVariable String accessionNo) {
         return stockRecordService.remove(accessionNo);
     }
 
     @GetMapping("stock/{accessionNo}")
-    public StockRecord retrieveBy(@PathVariable String accessionNo) {
+    private StockRecord retrieveBy(@PathVariable String accessionNo) {
         return stockRecordService.retrieveByAccessionNo(accessionNo);
     }
 
