@@ -35,15 +35,15 @@ public class HelloControllerIT {
 
     @Test
     public void getHello() throws Exception {
-        String url = base.toString().concat("/greetings");
+        String url = base.toString().concat("/greetings/Tushar");
         ResponseEntity<String> response = template.getForEntity(url.toString(),String.class);
-        Assert.assertThat(response.getBody(), Matchers.equalTo("Hello Urvi"));
+        Assert.assertThat(response.getBody(), Matchers.anyOf(Matchers.equalToIgnoringCase(("Hello Tushar. Welcome to Advanced Technologies DevOps Stall")),Matchers.equalTo("Hello Mother")));
     }
 
-    @Test
+/*    @Test
     public void getStockInformation() throws Exception {
         String url = base.toString().concat("/stock");
         ResponseEntity<List> response = template.getForEntity(url.toString(),List.class);
         Assert.assertThat(response.getStatusCode(), Matchers.equalTo(HttpStatus.OK));
-    }
+    }*/
 }

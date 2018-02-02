@@ -25,7 +25,7 @@ public class Hello {
         return "Hello "+name +". Welcome to Advanced Technologies DevOps Stall";
     }
 
-    @GetMapping("stock")
+/*    @GetMapping("stock")
     @Transactional(readOnly = true)
     private List<StockRecord> retrieveAllStockInformation() {
         return stockRecordService.retrieveAllStockInformation().collect(Collectors.toList());
@@ -44,7 +44,7 @@ public class Hello {
     @GetMapping("stock/{accessionNo}")
     private StockRecord retrieveBy(@PathVariable String accessionNo) {
         return stockRecordService.retrieveByAccessionNo(accessionNo);
-    }
+    }*/
 
 /*    @Transactional(readOnly = true)
     @GetMapping("stock/stream/list/all")

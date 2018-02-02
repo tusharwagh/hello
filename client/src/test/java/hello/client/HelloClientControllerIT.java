@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URL;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -37,6 +38,6 @@ public class HelloClientControllerIT {
     public void getHello() throws Exception {
         String url = base.toString().concat("/to-read");
         ResponseEntity<String> response = template.getForEntity(url.toString(),String.class);
-        Assert.assertThat(response.getBody(), Matchers.anyOf(Matchers.equalTo("Hello Urvi"),Matchers.equalTo("Hello Mother")));
+        Assert.assertThat(response.getBody(), Matchers.anyOf(Matchers.equalToIgnoringCase(("Hello Tushar. Welcome to Advanced Technologies DevOps Stall")),Matchers.equalTo("Hello Mother")));
     }
 }
