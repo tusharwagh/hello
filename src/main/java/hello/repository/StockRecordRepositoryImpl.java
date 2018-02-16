@@ -1,16 +1,14 @@
 package hello.repository;
 
 import hello.domain.StockRecordRepository;
-import hello.entity.StockRecordEntity;
 import hello.model.Book;
 import hello.model.StockRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 @Repository
@@ -27,7 +25,7 @@ public class StockRecordRepositoryImpl implements StockRecordRepository {
     }*/
 
     private static StockRecord map(StockRecordEntity stockRecordEntity) {
-        return StockRecord.create(stockRecordEntity.getAccessionNo(),Book.create(stockRecordEntity.getIsbn(),"sample"),stockRecordEntity.getStatus());
+        return StockRecord.create(stockRecordEntity.getAccessionNo(), Book.create(stockRecordEntity.getIsbn(), "sample"), stockRecordEntity.getStatus());
     }
 
     private static StockRecordEntity map(StockRecord stockRecord) {
@@ -36,14 +34,15 @@ public class StockRecordRepositoryImpl implements StockRecordRepository {
 
     @Override
     public Stream<StockRecord> retrieveAllStockInformation() {
-        Function<StockRecordEntity,StockRecord> mapper = StockRecordRepositoryImpl::map;
+        Function<StockRecordEntity, StockRecord> mapper = StockRecordRepositoryImpl::map;
+        //return jpaRepository.getAsStream().map(e -> mapper.apply(e));
         return jpaRepository.getAsStream().map(e -> mapper.apply(e));
         //return jdbcRepository.retrieveStockInformation().map(e -> mapper.apply(e));
     }
 
     @Override
     public StockRecord retrieveByAccessionNo(String accessionNo) {
-        Function<StockRecordEntity,StockRecord> mapper = StockRecordRepositoryImpl::map;
+        Function<StockRecordEntity, StockRecord> mapper = StockRecordRepositoryImpl::map;
         return mapper.apply(jpaRepository.findOne(accessionNo));
     }
 
@@ -55,14 +54,14 @@ public class StockRecordRepositoryImpl implements StockRecordRepository {
 
     @Override
     public StockRecord register(StockRecord stockRecord) {
-        Function<StockRecord,StockRecordEntity> mapper = StockRecordRepositoryImpl::map;
-        Function<StockRecordEntity,StockRecord> reverseMapper = StockRecordRepositoryImpl::map;
+        Function<StockRecord, StockRecordEntity> mapper = StockRecordRepositoryImpl::map;
+        Function<StockRecordEntity, StockRecord> reverseMapper = StockRecordRepositoryImpl::map;
         return reverseMapper.apply(jpaRepository.save(mapper.apply(stockRecord)));
     }
 
 
-    public Stream<StockRecord> retrieveAllStockWithJDBCTemplate() {
-        Function<StockRecordEntity,StockRecord> mapper = StockRecordRepositoryImpl::map;
+    /*public Stream<StockRecord> retrieveAllStockWithJDBCTemplate() {
+        Function<StockRecordEntity, StockRecord> mapper = StockRecordRepositoryImpl::map;
         return jpaRepository.getAsStream().map(e -> mapper.apply(e));
-    }
+    }*/
 }

@@ -41,7 +41,7 @@ public class HelloTest {
         mvc.perform(MockMvcRequestBuilders.get("/greetings/Tushar").accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().string(Matchers.anyOf(Matchers.equalToIgnoringCase(("Hello Tushar. Welcome to Advanced Technologies DevOps Stall")),Matchers.equalTo("Hello Mother"))));
     }
 
-/*    @Test
+    @Test
     public void getStock() throws Exception {
         when(stockRecordService.retrieveAllStockInformation()).thenReturn(Stream.<StockRecord>builder().build());
         mvc.perform(MockMvcRequestBuilders.get("/stock").accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
@@ -51,5 +51,5 @@ public class HelloTest {
     public void getStockByAccessionNo() throws Exception {
         when(stockRecordService.retrieveByAccessionNo("384240")).thenReturn(StockRecord.create("384240", Book.create("2342342424","Sample")));
         mvc.perform(MockMvcRequestBuilders.get("/stock/384240").accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-    }*/
+    }
 }

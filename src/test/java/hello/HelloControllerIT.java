@@ -40,10 +40,10 @@ public class HelloControllerIT {
         Assert.assertThat(response.getBody(), Matchers.anyOf(Matchers.equalToIgnoringCase(("Hello Tushar. Welcome to Advanced Technologies DevOps Stall")),Matchers.equalTo("Hello Mother")));
     }
 
-/*    @Test
+    @Test
     public void getStockInformation() throws Exception {
         String url = base.toString().concat("/stock");
         ResponseEntity<List> response = template.getForEntity(url.toString(),List.class);
         Assert.assertThat(response.getStatusCode(), Matchers.equalTo(HttpStatus.OK));
-    }*/
+    }
 }

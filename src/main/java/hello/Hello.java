@@ -25,26 +25,26 @@ public class Hello {
         return "Hello "+name +". Welcome to Advanced Technologies DevOps Stall";
     }
 
-/*    @GetMapping("stock")
+    @GetMapping("stock")
     @Transactional(readOnly = true)
-    private List<StockRecord> retrieveAllStockInformation() {
+    public List<StockRecord> retrieveAllStockInformation() {
         return stockRecordService.retrieveAllStockInformation().collect(Collectors.toList());
     }
 
     @PostMapping("stock/register")
-    private StockRecord register(@RequestBody StockRecordInfo stockRecordInfo) {
+    public StockRecord register(@RequestBody StockRecordInfo stockRecordInfo) {
         return stockRecordService.register(stockRecordInfo.getAccessionNo(),stockRecordInfo.getIsbn(),stockRecordInfo.getTitle());
     }
 
     @DeleteMapping("stock/deregister/{accessionNo}")
-    private boolean deRegisterStockWith(@PathVariable String accessionNo) {
+    public boolean deRegisterStockWith(@PathVariable String accessionNo) {
         return stockRecordService.remove(accessionNo);
     }
 
     @GetMapping("stock/{accessionNo}")
-    private StockRecord retrieveBy(@PathVariable String accessionNo) {
+    public StockRecord retrieveBy(@PathVariable String accessionNo) {
         return stockRecordService.retrieveByAccessionNo(accessionNo);
-    }*/
+    }
 
 /*    @Transactional(readOnly = true)
     @GetMapping("stock/stream/list/all")
